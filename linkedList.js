@@ -23,6 +23,57 @@ class LinkedList {
     this.length++;
     return this;
   }
+
+  insert(index, value) {
+    if (index < 0) {
+      throw new Error("Index should be equal or greater than 0!");
+    }
+    if (index === 0) {
+      return this.prepend(value);
+    } else if (index >= this.length) {
+      return this.append(value);
+    } else {
+      let prevNode = this.traverseToIndex(index - 1);
+
+      const newNode = { value, next: prevNode.next };
+      prevNode.next = newNode;
+      this.length++;
+      return newNode;
+    }
+  }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) {
+      throw new Error("Index is not valid!");
+    }
+    if (index === 0) {
+      const newHead = this.head.next;
+      this.head = newHead;
+    } else {
+      const prevNode = this.traverseToIndex(index - 1);
+      prevNode.next = prevNode.next.next;
+    }
+    this.length--;
+  }
+
+  traverseToIndex(index) {
+    if (index < 0 || index > this.length) {
+      throw new Error("Index is not valid!");
+    }
+    let currentNode = this.head;
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
+    }
+    return currentNode;
+  }
+
+  printList() {
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      console.log(currentNode);
+      currentNode = currentNode.next;
+    }
+  }
 }
 
 const myLinkedList = new LinkedList(0);
@@ -34,18 +85,24 @@ myLinkedList.append(40);
 myLinkedList.append(50);
 myLinkedList.append(60);
 
-console.log(myLinkedList.head);
-console.log(myLinkedList.length);
-console.log(myLinkedList.tail);
-console.log(myLinkedList);
+// console.log(myLinkedList.head);
+// console.log(myLinkedList.length);
+// console.log(myLinkedList.tail);
+// console.log(myLinkedList);
 
+// console.log("------+++++++++++++++------");
+// console.log("------++++prepend++++------");
+// console.log("------+++++++++++++++------");
+
+// myLinkedList.prepend(-1);
+
+// console.log(myLinkedList.head);
+// console.log(myLinkedList.length);
+// console.log(myLinkedList.tail);
+// console.log(myLinkedList);
+
+myLinkedList.printList();
 console.log("------+++++++++++++++------");
-console.log("------++++prepend++++------");
+myLinkedList.remove(6);
 console.log("------+++++++++++++++------");
-
-myLinkedList.prepend(-1);
-
-console.log(myLinkedList.head);
-console.log(myLinkedList.length);
-console.log(myLinkedList.tail);
-console.log(myLinkedList);
+myLinkedList.printList();
