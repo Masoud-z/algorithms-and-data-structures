@@ -52,6 +52,9 @@ class LinkedList {
     } else {
       const prevNode = this.traverseToIndex(index - 1);
       prevNode.next = prevNode.next.next;
+      if (index === this.length - 1) {
+        this.tail = prevNode;
+      }
     }
     this.length--;
   }
