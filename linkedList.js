@@ -59,6 +59,20 @@ class LinkedList {
     this.length--;
   }
 
+  reverse() {
+    let currentNode = this.head;
+    this.tail = this.head;
+    let nextNode = currentNode.next;
+    while (nextNode) {
+      let temp = nextNode.next;
+      nextNode.next = currentNode;
+      currentNode = nextNode;
+      nextNode = temp;
+    }
+    this.head.next = null;
+    this.head = currentNode;
+  }
+
   traverseToIndex(index) {
     if (index < 0 || index > this.length) {
       throw new Error("Index is not valid!");
@@ -88,6 +102,9 @@ myLinkedList.append(40);
 myLinkedList.append(50);
 myLinkedList.append(60);
 
+myLinkedList.reverse();
+myLinkedList.printList();
+
 // console.log(myLinkedList.head);
 // console.log(myLinkedList.length);
 // console.log(myLinkedList.tail);
@@ -104,8 +121,8 @@ myLinkedList.append(60);
 // console.log(myLinkedList.tail);
 // console.log(myLinkedList);
 
-myLinkedList.printList();
-console.log("------+++++++++++++++------");
-myLinkedList.remove(6);
-console.log("------+++++++++++++++------");
-myLinkedList.printList();
+// myLinkedList.printList();
+// console.log("------+++++++++++++++------");
+// myLinkedList.remove(6);
+// console.log("------+++++++++++++++------");
+// myLinkedList.printList();
