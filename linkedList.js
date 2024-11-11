@@ -61,7 +61,6 @@ class LinkedList {
 
   reverse() {
     let currentNode = this.head;
-    this.tail = this.head;
     let nextNode = currentNode.next;
     while (nextNode) {
       let temp = nextNode.next;
@@ -70,7 +69,9 @@ class LinkedList {
       nextNode = temp;
     }
     this.head.next = null;
+    this.tail = this.head;
     this.head = currentNode;
+    return this;
   }
 
   traverseToIndex(index) {
@@ -102,7 +103,7 @@ myLinkedList.append(40);
 myLinkedList.append(50);
 myLinkedList.append(60);
 
-myLinkedList.reverse();
+console.log(myLinkedList.reverse());
 myLinkedList.printList();
 
 // console.log(myLinkedList.head);
