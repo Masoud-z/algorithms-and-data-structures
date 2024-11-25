@@ -3,12 +3,10 @@ const numbers = [99, 44, 21, 1, 58, 65, 1, 5, 3, 88, 54, 22];
 // const numbers = [1, 2, 3, 4];
 
 function mergeSort(array) {
-  if (array.length === 1) {
-    return array;
-  }
+  if (array.length === 1) return array;
 
-  const right = array.slice(0, Math.floor(array.length / 2));
-  const left = array.slice(Math.floor(array.length / 2));
+  const left = array.slice(0, Math.floor(array.length / 2));
+  const right = array.slice(Math.floor(array.length / 2));
 
   return merge(mergeSort(left), mergeSort(right));
 }
